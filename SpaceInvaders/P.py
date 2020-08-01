@@ -1,3 +1,5 @@
+"""Just exploring the task. Doesn't work."""
+
 import maze
 
 c = maze.Connect('SK1PY', 'lebkoun')

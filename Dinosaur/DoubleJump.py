@@ -1,8 +1,11 @@
+import maze
+
+
 def move(con, str):
+    """Use to send multiple commands at once."""
     for s in str:
         con.move(s)
 
-import maze
 
 c = maze.Connect("SK1PY", "archeopteryx")
 field = c.get_all()
@@ -10,11 +13,11 @@ field = c.get_all()
 isles = [field[i][-1] for i in range(len(field))]
 jmps = [(False, 1) for i in range(len(isles))]
 
-for i in range(len(jmps)-4, len(jmps)):
+for i in range(len(jmps)-4, len(jmps)):  # setup for last 4 blocks
     jmps[i] = (isles[i] == 1, 1)
 
 current = len(jmps) - 4
-while current >= 0:
+while current >= 0:  # iterating from back
     current -= 1
     if isles[current] == 0:
         continue
@@ -28,7 +31,7 @@ while current >= 0:
         jmps[current] = (True, 8)
 
 adress = 0
-while True:
+while True:  # reconstructing solution
     print(adress)
     _, jmp = jmps[adress]
     if jmp == 1:

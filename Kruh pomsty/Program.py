@@ -1,4 +1,8 @@
+"""Just exploring the task. Doesn't work."""
+
+
 def move(string):
+    """Use to send multiple commands at once."""
     for s in string:
         c.move(s)
         print(c.get(c.x(), c.y()))

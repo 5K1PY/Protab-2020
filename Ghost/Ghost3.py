@@ -6,16 +6,17 @@ c = maze.Connect("SK1PY", "taktofaktne")
 n = 10000
 width = 2*n
 bludiste = [[None]*width for i in range(width)]
-phased_bludiste = [[(-1, None, None)]*width for i in range(width)]
+phased_bludiste = [[(-1, None, None)]*width for i in range(width)]  # when i got here, from where, with which keystroke
 x, y = c.x() + n, c.y() + n
 
-alive_nodes = [(x, y)]
-active_nodes = collections.deque([(x, y)])
+alive_nodes = [(x, y)]  # searching through walls from these
+active_nodes = collections.deque([(x, y)])  # activly searching from
 phased_bludiste[x][y] = (0, (0, 0), None)
 
 phased = 0
 policek = 0
 while True:
+    # part for search in empty squares
     while len(active_nodes) > 0:
         print(policek)
         x, y = active_nodes.popleft()
@@ -61,8 +62,9 @@ while True:
                     break
 
     if len(active_nodes) > 0:
-        break
+        break  # found treasure
 
+    # part for search through walls
     phased += 1
     new_alive_nodes = []
     for node in alive_nodes:
@@ -87,18 +89,18 @@ while True:
             active_nodes.append((x, y-1))
             phased_bludiste[x][y-1] = (phased, (x, y), 'w')
             policek += 1
-        
+
     alive_nodes = new_alive_nodes
     active_nodes = collections.deque(alive_nodes)
 
 x, y = active_nodes[-1]
 commands = []
-while True:
+while True:  # reconstructing solution
     _, (x, y), command = phased_bludiste[x][y]
     if command is None:
         break
     commands.append(command)
 commands.reverse()
 
-for command in commands:
+for command in commands:  # executing solution
     c.move(command)

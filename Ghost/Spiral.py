@@ -1,3 +1,6 @@
+"""Just exploring the task. Doesn't work."""
+
+
 import maze
 
 c = maze.Connect("SK1PY", "runda")
@@ -14,7 +17,7 @@ while True:
 
     for _ in range(mov):
         c.move(comm)
-    
+
     if increment is False:
         increment = True
     else:

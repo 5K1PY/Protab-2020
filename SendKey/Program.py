@@ -1,7 +1,4 @@
-def move(string):
-    for s in string:
-        c.move(s)
-
+"""Sends keys pressed on keyboard."""
 
 import maze
 from pynput.keyboard import Key, Listener
@@ -14,7 +11,6 @@ def on_press(key):
     if not c.move(key.char):
        print(c.error)
     print(c.x(), c.y())
-    c.move('w')
 
 def on_release(key):
     if key == Key.esc:

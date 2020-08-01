@@ -1,3 +1,6 @@
+"""Just exploring the task. Doesn't work."""
+
+
 import maze
 from math import inf
 
